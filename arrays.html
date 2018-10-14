@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var sequence = [1, 1, 2, 3, 5, 8, 13];
+        for (var i = 0; i < sequence.length; i++) {
+        console.log(sequence[i]);
+        }
+        sequence.length;
+        // should return 7
+
+        /*Some useful array methods*/
+
+        /*Converting between strings and arrays*/
+        console.log("/*Converting between strings and arrays*/")
+
+            var myData = 'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle';
+            var myArray = myData.split(',');//splits it at each comma
+
+            console.log(".split(','): " + myArray) 
+
+            myArray.length;
+            myArray[0]; // the first item in the array
+            myArray[1]; // the second item in the array
+            myArray[myArray.length-1]; // the last item in the array
+
+            var myNewString = myArray.join(',');//with join() = toString(), but you can specify different separators
+            myNewString;
+
+            console.log(".join(','): " + myNewString)            
+
+            var dogNames = ['Rocket','Flash','Bella','Slugger'];
+            dogNames.toString(); //Rocket,Flash,Bella,Slugger
+
+            console.log(".toString(): " + dogNames)
+
+        /*Adding and removing array items*/
+        console.log("/*Adding and removing array items*/")
+
+            var myArray = ['Manchester', 'London', 'Liverpool', 'Birmingham', 'Leeds', 'Carlisle'];
+            console.log("myArray :" + myArray)
+            myArray.push('Cardiff');
+            console.log("myArray.push('Cardiff'): " + myArray)
+            
+            var newLength = myArray.push('Bradford', 'Brighton');
+            console.log("var newLength = myArray.push('Bradford', 'Brighton'): " + newLength)
+            
+            var removedItem = myArray.pop('Bradford');
+            console.log("var removedItem = myArray.pop('Bradford'): " + removedItem)
+            //unshift() and shift() the same as push() and pop(),
+            //except that they work on the beginning of the array, not the end
+            myArray.unshift('Edinburgh');
+            console.log("myArray.unshift('Edinburgh'): " + myArray)
+            
+            var removedItem = myArray.shift();
+            console.log("myArray.shift(): "  + myArray)
+            console.log("removedItem: " + removedItem)
+
+        //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays#Active_learning_Printing_those_products!
+        //https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays#Active_learning_Top_5_searches
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+

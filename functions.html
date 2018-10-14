@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    /*Defining functions*/
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Defining_functions
+
+        // Function declarations
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Function_declarations
+
+        function square(number) {
+            return number * number;
+        }
+
+        function myFunc(theObject) {
+            theObject.make = 'Toyota';
+        }
+
+        //
+        var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+        var x, y;
+
+        x = mycar.make; // x gets the value "Honda"
+
+        myFunc(mycar);
+        y = mycar.make; // y gets the value "Toyota"
+                        // (the make property was changed by the function)
+
+        //Function expressions
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Function_expressions
+
+        //anonymous = it does not have a name
+        var square = function(number) { return number * number; };
+        var x = square(4); // x gets the value 16
+
+        //a name provided with a function expression
+        var factorial = function fac(n) { return n < 2 ? 1 : n * fac(n - 1); };
+        console.log(factorial(3));
+
+        //Map function that receives a function as first argument and an array as second argument.
+        function map(f, a) {
+            var result = [],i; // Create a new Array
+            for (i = 0; i != a.length; i++)
+                result[i] = f(a[i]);
+            return result;
+        }
+
+        //function receives a function
+        //defined by a function expression
+        //and executes it for every element of the array received as a second argument.
+        function map(f, a) {
+            var result = []; // Create a new Array
+            var i; // Declare variable
+            for (i = 0; i != a.length; i++)
+            result[i] = f(a[i]);
+            return result;
+            }
+            var f = function(x) {
+                return x * x * x; 
+            }
+            var numbers = [0, 1, 2, 5, 10];
+            var cube = map(f,numbers);
+            console.log(cube);
+            //Function returns: [0, 1, 8, 125, 1000]
+
+        //a function can be defined based on a condition
+        var myFunc;
+        var num;
+        if (num === 0) {
+            myFunc = function(theObject) {
+                theObject.make = 'Toyota';
+            }
+        }
+
+        //A method is a function that is a property of an object.
+
+    /*Calling functions*/
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Calling_functions
+        
+        //If you define the function square, you could call it as follows:
+        square(5);//with an argument of 5
+
+        //the function declaration can be hoisted
+        console.log(square(5));
+        /* ... */
+        function square(n) { return n * n; }
+
+        //A function can call itself
+        function factorial(n) {
+            if ((n === 0) || (n === 1))
+            return 1;
+            else
+            return (n * factorial(n - 1));
+        }
+        var a, b, c, d, e;
+        a = factorial(1); // a gets the value 1
+        b = factorial(2); // b gets the value 2
+        c = factorial(3); // c gets the value 6
+        d = factorial(4); // d gets the value 24
+        e = factorial(5); // e gets the value 120
+
+    /*Function scope*/
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Function_scope
+
+        // The following variables are defined in the global scope
+        var num1 = 20,
+            num2 = 3,
+            name = 'Chamahk';
+
+        // This function is defined in the global scope
+        function multiply() {
+            return num1 * num2;
+        }
+
+        multiply(); // Returns 60
+
+        // A nested function example
+        function getScore() {
+            var num1 = 2,
+                num2 = 3;
+            
+            function add() {
+                return name + ' scored ' + (num1 + num2);
+            }
+        
+        return add();
+        }
+
+        getScore(); // Returns "Chamahk scored 5"
+
+    /*Scope and the function stack*/
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Scope_and_the_function_stack
+
+        //Recursion
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Recursion
+
+        //A function can refer to and call itself
+
+        var foo = function bar() {
+            // statements go here
+        };
+
+        var x = 0;
+        while (x < 10) { // "x < 10" is the loop condition
+            // do stuff
+            x++;
+        }
+        //can be converted into a recursive function and a call to that function:
+        function loop(x) {
+            if (x >= 10) // "x >= 10" is the exit condition (equivalent to "!(x < 10)")
+            return;
+            // do stuff
+            loop(x + 1); // the recursive call
+        }
+        loop(0);
+
+        //getting all the nodes of a tree structure (e.g. the DOM) is more easily done using recursion:
+        function walkTree(node) {
+            if (node == null) // 
+            return;
+            // do something with node
+            for (var i = 0; i < node.childNodes.length; i++) {
+                walkTree(node.childNodes[i]);
+            }
+        }
+
+        //recursion itself uses a stack: the function stack
+        function foo(i) {
+            if (i < 0)
+            return;
+            console.log('begin: ' + i);
+            foo(i - 1);
+            console.log('end: ' + i);
+        }
+        foo(3);
+
+        // Output:
+
+        // begin: 3
+        // begin: 2
+        // begin: 1
+        // begin: 0
+        // end: 0
+        // end: 1
+        // end: 2
+        // end: 3
+
+
+        //Nested functions and closure
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Nested_functions_and_closures
+
+        function addSquares(a, b) {
+            function square(x) {
+                return x * x;
+            }
+        return square(a) + square(b);
+        }
+        a = addSquares(2, 3); // returns 13
+        b = addSquares(3, 4); // returns 25
+        c = addSquares(4, 5); // returns 41
+
+        function outside(x) {
+            function inside(y) {
+                return x + y;
+            }
+            return inside;
+        }
+        fn_inside = outside(3); // Think of it like: give me a function that adds 3 to whatever you give it
+        result = fn_inside(5); // returns 8
+        result1 = outside(3)(5); // returns 
+        
+        //Multiply-nested functions
+
+        function A(x) {
+            function B(y) {
+                function C(z) {
+                console.log(x + y + z);
+                }
+            C(3);
+            }
+        B(2);
+        }
+        A(1); // logs 6 (1 + 2 + 3)
+
+    /*Closures*/
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Closures
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+
